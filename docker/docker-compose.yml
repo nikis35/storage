@@ -1,0 +1,14 @@
+services:
+  django1:
+    # Сборка образа для сервиса django из текущей директории
+    build: ../backend/docker_env
+    # Задание имени контейнера для сервиса django
+    container_name: django
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: python3 manage.py runserver 127.0.0.1:8000
+    volumes:
+      - ../backend/main:/usr/src/main
+    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
+    ports:
+      - 8000:8000
+    network_mode: host
